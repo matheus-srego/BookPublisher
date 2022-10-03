@@ -1,0 +1,16 @@
+USE [editora]
+GO
+
+BEGIN TRANSACTION;
+
+CREATE TABLE [dbo].[autor]
+(
+	[id] BIGINT NOT NULL PRIMARY KEY IDENTITY (1, 1),
+	[nome] NVARCHAR(50) NOT NULL,
+	[sobrenome] NVARCHAR(100) NOT NULL,
+	[email] NVARCHAR(50) NOT NULL,
+	[data_nascimento] DATETIME NOT NULL
+)
+GO
+
+COMMIT TRANSACTION;
