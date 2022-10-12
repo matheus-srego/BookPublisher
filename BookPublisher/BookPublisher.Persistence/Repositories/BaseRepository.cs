@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BookPublisher.Persistence.Repositories
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
+    internal class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     {
         protected readonly DbSet<T> _query;
 
