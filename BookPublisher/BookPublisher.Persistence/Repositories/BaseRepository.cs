@@ -1,5 +1,7 @@
 ﻿using BookPublisher.Domain.Interfaces.Repositories;
 using BookPublisher.Domain.Models;
+using BookPublisher.Persistence.Context;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +12,17 @@ namespace BookPublisher.Persistence.Repositories
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     {
-        public Task<T> Insert(T entity, CancellationToken cancellationToken = default)
+        protected readonly DbSet<T> _query;
+
+        public BaseRepository(BookPublisherContext context)
         {
-            throw new NotImplementedException();
+            _query = context.Set<T>();
+        }
+
+        public async Task<T> Insert(T entity, CancellationToken cancellationToken = default)
+        {
+            await _query.AddAsync(entity, cancellationToken);
+            return entity;
         }
     }
 }
