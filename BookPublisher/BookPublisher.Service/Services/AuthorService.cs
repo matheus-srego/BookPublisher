@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BookPublisher.Service.Services
 {
-    internal sealed class AuthorService : BaseService<AuthorModel>, IAuthorService
+    public sealed class AuthorService : BaseService<AuthorModel>, IAuthorService
     {
         public AuthorService(IBaseRepository<AuthorModel> baseRepository) : base(baseRepository)
         {

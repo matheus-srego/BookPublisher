@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BookPublisher.Persistence.Repositories
 {
-    internal sealed class AuthorRepository : BaseRepository<AuthorModel>, IAuthorRepository
+    public sealed class AuthorRepository : BaseRepository<AuthorModel>, IAuthorRepository
     {
         public AuthorRepository(BookPublisherContext context) : base(context)
         {

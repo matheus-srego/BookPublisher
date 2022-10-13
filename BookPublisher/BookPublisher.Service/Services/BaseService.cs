@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BookPublisher.Service.Services
 {
-    internal class BaseService<T> : IBaseService<T> where T : BaseEntity
+    public class BaseService<T> : IBaseService<T> where T : BaseEntity
     {
         private readonly IBaseRepository<T> _baseRepository;
 
