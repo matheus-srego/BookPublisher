@@ -13,10 +13,17 @@ namespace BookPublisher.Persistence.Repositories
     public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     {
         protected readonly DbSet<T> _query;
+        public BookPublisherContext _context;
 
         public BaseRepository(BookPublisherContext context)
         {
             _query = context.Set<T>();
+            _context = context;
+        }
+
+        public DbContext getContext()
+        {
+            return _context;
         }
 
         public async Task<T> Insert(T entity, CancellationToken cancellationToken = default)

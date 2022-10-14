@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BookPublisher.Domain.Interfaces.Repositories;
+using BookPublisher.Persistence.Context;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace BookPublisher.API.Controllers
 {
@@ -7,11 +11,18 @@ namespace BookPublisher.API.Controllers
     public class HomeController : ControllerBase
     {
         private static readonly string phrase = "Testando Docker!";
+        public IAuthorRepository AuthorRepository;
 
-        [HttpGet(Name = "Docker")]
+        public HomeController(IAuthorRepository authorRepository)
+        {
+            AuthorRepository = authorRepository;
+        }
+
+        [HttpGet]
         public IActionResult Get()
         {
-            return Ok(phrase);
+            var canConnect = AuthorRepository.getContext().Database.CanConnect();
+            return Ok(new { ConnectionState = canConnect });
         }
     }
 }
