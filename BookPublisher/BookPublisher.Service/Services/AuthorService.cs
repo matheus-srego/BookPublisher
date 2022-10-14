@@ -11,7 +11,7 @@ namespace BookPublisher.Service.Services
 {
     public sealed class AuthorService : BaseService<AuthorModel>, IAuthorService
     {
-        public AuthorService(IBaseRepository<AuthorModel> baseRepository) : base(baseRepository)
+        public AuthorService(IAuthorRepository authorRepository) : base(authorRepository)
         {
             // ---
         }
