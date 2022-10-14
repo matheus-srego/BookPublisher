@@ -13,4 +13,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BookPublisher.Persistence\BookPublisher.Persistence.csproj" />
+    <ProjectReference Include="..\BookPublisher.Service\BookPublisher.Service.csproj" />
+  </ItemGroup>
+
 </Project>
