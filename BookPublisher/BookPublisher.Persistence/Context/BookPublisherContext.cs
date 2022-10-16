@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BookPublisher.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,7 @@ namespace BookPublisher.Persistence.Context
         {
             // ---
         }
+
+        public DbSet<AuthorModel> Author { get; set; }
     }
 }
