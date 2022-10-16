@@ -1,5 +1,6 @@
 ﻿using BookPublisher.Domain.DTOs;
 using BookPublisher.Domain.Interfaces.Services;
+using BookPublisher.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
@@ -32,10 +33,13 @@ namespace BookPublisher.API.Controllers
         }
 
         // POST api/<AuthorController>
-
+        [ProducesResponseType(typeof(IEnumerable<NewAuthorDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] NewAuthorDTO authorDTO)
         {
+            return Ok(await _authorService.Insert(AuthorModel.Create(authorDTO)));
         }
 
         // PUT api/<AuthorController>/5
