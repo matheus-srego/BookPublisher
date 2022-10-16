@@ -9,6 +9,6 @@ namespace BookPublisher.Domain.Interfaces.Services
 {
     public interface IBaseService<T> where T : BaseEntity
     {
-        Task<T> Insert(T entity, CancellationToken cancellationToken = default);
+        Task<T> Insert(T entity);
     }
 }

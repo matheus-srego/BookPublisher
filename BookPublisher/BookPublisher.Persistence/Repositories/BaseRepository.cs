@@ -26,9 +26,9 @@ namespace BookPublisher.Persistence.Repositories
             return _context;
         }
 
-        public async Task<T> Insert(T entity, CancellationToken cancellationToken = default)
+        public async Task<T> Insert(T entity)
         {
-            await _query.AddAsync(entity, cancellationToken);
+            await _query.AddAsync(entity);
             return entity;
         }
     }

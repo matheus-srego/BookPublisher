@@ -11,6 +11,6 @@ namespace BookPublisher.Domain.Interfaces.Repositories
     public interface IBaseRepository<T> where T : BaseEntity
     {
         DbContext getContext();
-        Task<T> Insert(T entity, CancellationToken cancellationToken = default);
+        Task<T> Insert(T entity);
     }
 }
