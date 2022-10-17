@@ -1,4 +1,5 @@
 ﻿using BookPublisher.Domain.Models;
+using BookPublisher.Persistence.Mappers;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,5 +17,16 @@ namespace BookPublisher.Persistence.Context
         }
 
         public DbSet<AuthorModel> Author { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AuthorMapper).Assembly);
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
