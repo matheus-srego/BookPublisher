@@ -17,13 +17,15 @@ namespace BookPublisher.Persistence.Repositories
 
         public BaseRepository(BookPublisherContext context)
         {
-            _query = context.Set<T>();
             _context = context;
+            _query = _context.Set<T>();
         }
 
         public DbContext getContext()
+        public async Task<IEnumerable<T>> GetAll(CancellationToken cancellationToken = default)
         {
-            return _context;
+            var authors = await _query.ToListAsync(cancellationToken);
+            return authors;
         }
 
         public async Task<T> Insert(T entity)

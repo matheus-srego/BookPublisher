@@ -19,10 +19,14 @@ namespace BookPublisher.API.Controllers
         }
 
         // GET: api/<AuthorController>
+        [ProducesResponseType(typeof(IEnumerable<AuthorModel>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> List(CancellationToken cancellationToken = default)
         {
-            return new string[] { "value1", "value2" };
+            return Ok(await _authorService.GetAll(cancellationToken));
         }
 
         // GET api/<AuthorController>/5

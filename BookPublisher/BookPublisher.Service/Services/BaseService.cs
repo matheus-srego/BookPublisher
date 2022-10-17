@@ -19,8 +19,10 @@ namespace BookPublisher.Service.Services
         }
 
         public async Task<T> Insert(T entity)
+        public async Task<IEnumerable<T>> GetAll(CancellationToken cancellationToken = default)
         {
-            await _baseRepository.Insert(entity);
+            return await _baseRepository.GetAll(cancellationToken);
+        }
             return entity;
         }
     }
