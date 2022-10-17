@@ -21,11 +21,15 @@ namespace BookPublisher.Persistence.Repositories
             _query = _context.Set<T>();
         }
 
-        public DbContext getContext()
         public async Task<IEnumerable<T>> GetAll(CancellationToken cancellationToken = default)
         {
             var authors = await _query.ToListAsync(cancellationToken);
             return authors;
+        }
+
+        public DbContext getContext()
+        {
+            return _context;
         }
 
         public async Task<T> Insert(T entity)
