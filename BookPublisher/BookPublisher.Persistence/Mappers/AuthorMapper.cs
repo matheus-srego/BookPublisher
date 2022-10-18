@@ -19,27 +19,23 @@ namespace BookPublisher.Persistence.Mappers
 
             builder.Property(model => model.Id)
                    .HasColumnName("id")
-                   .ValueGeneratedNever()
+                   .ValueGeneratedOnAdd()
                    .IsRequired();
 
             builder.Property(model => model.Name)
                    .HasColumnName("nome")
-                   .ValueGeneratedNever()
                    .IsRequired();
 
             builder.Property(model => model.LastName)
                    .HasColumnName("sobrenome")
-                   .ValueGeneratedNever()
                    .IsRequired();
 
             builder.Property(model => model.Email)
                    .HasColumnName("email")
-                   .ValueGeneratedNever()
                    .IsRequired();
 
             builder.Property(model => model.Birthdate)
                    .HasColumnName("data_nascimento")
-                   .ValueGeneratedNever()
                    .IsRequired();
         }
     }
