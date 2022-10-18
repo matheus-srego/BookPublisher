@@ -10,6 +10,6 @@ namespace BookPublisher.Domain.Interfaces.Services
     public interface IBaseService<T> where T : BaseEntity
     {
         Task<T> Insert(T entity);
-        Task<IEnumerable<T>> GetAll(CancellationToken cancellationToken = default);
+        Task<IEnumerable<T>> GetAll();
     }
 }

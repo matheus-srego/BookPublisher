@@ -24,9 +24,9 @@ namespace BookPublisher.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet]
-        public async Task<IActionResult> List(CancellationToken cancellationToken = default)
+        public async Task<IActionResult> List()
         {
-            return Ok(await _authorService.GetAll(cancellationToken));
+            return Ok(await _authorService.GetAll());
         }
 
         // GET api/<AuthorController>/5

@@ -21,9 +21,9 @@ namespace BookPublisher.Persistence.Repositories
             _query = _context.Set<T>();
         }
 
-        public async Task<IEnumerable<T>> GetAll(CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<T>> GetAll()
         {
-            var authors = await _query.ToListAsync(cancellationToken);
+            var authors = await _query.ToListAsync();
             return authors;
         }
 
