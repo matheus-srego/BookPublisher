@@ -25,8 +25,8 @@ namespace BookPublisher.Persistence.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AuthorMapper).Assembly);
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<AuthorModel>(new AuthorMapper().Configure);
         }
     }
 }
