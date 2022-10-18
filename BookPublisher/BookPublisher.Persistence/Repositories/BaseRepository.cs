@@ -35,6 +35,7 @@ namespace BookPublisher.Persistence.Repositories
         public async Task<T> Insert(T entity)
         {
             await _query.AddAsync(entity);
+            await _context.SaveChangesAsync();
             return entity;
         }
     }
