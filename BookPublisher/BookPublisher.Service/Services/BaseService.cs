@@ -28,5 +28,11 @@ namespace BookPublisher.Service.Services
             await _baseRepository.Insert(entity);
             return entity;
         }
+
+        public async Task<T> Delete(long id)
+        {
+            var entity = await _baseRepository.Delete(id);
+            return entity;
+        }
     }
 }

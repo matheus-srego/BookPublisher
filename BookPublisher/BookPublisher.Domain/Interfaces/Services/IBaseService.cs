@@ -11,5 +11,6 @@ namespace BookPublisher.Domain.Interfaces.Services
     {
         Task<T> Insert(T entity);
         Task<IEnumerable<T>> GetAll();
+        Task<T> Delete(long ind);
     }
 }

@@ -38,5 +38,15 @@ namespace BookPublisher.Persistence.Repositories
             await _context.SaveChangesAsync();
             return entity;
         }
+
+        public async Task<T> Delete(long id)
+        {
+            var entity = _query.Find(id);
+
+            _query.Remove(entity);
+            await _context.SaveChangesAsync();
+
+            return entity;
+        }
     }
 }

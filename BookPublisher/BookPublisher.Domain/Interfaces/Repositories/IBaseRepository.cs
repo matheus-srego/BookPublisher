@@ -13,5 +13,6 @@ namespace BookPublisher.Domain.Interfaces.Repositories
         DbContext getContext();
         Task<T> Insert(T entity);
         Task<IEnumerable<T>> GetAll();
+        Task<T> Delete(long id);
     }
 }
