@@ -30,6 +30,10 @@ namespace BookPublisher.API.Controllers
         }
 
         // GET api/<AuthorController>/5
+        [ProducesResponseType(typeof(IEnumerable<AuthorModel>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet("{id}")]
         public async Task<IActionResult> Get([FromRoute] long id)
         {
@@ -37,7 +41,7 @@ namespace BookPublisher.API.Controllers
         }
 
         // POST api/<AuthorController>
-        [ProducesResponseType(typeof(IEnumerable<NewAuthorDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(NewAuthorDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPost]
@@ -53,6 +57,10 @@ namespace BookPublisher.API.Controllers
         }
 
         // DELETE api/<AuthorController>/5
+        [ProducesResponseType(typeof(AuthorModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] long id)
         {
