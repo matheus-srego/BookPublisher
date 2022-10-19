@@ -31,9 +31,9 @@ namespace BookPublisher.API.Controllers
 
         // GET api/<AuthorController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> Get([FromRoute] long id)
         {
-            return "value";
+            return Ok(await _authorService.GetById(id));
         }
 
         // POST api/<AuthorController>

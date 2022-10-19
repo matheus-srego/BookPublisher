@@ -9,6 +9,7 @@ namespace BookPublisher.Domain.Interfaces.Services
 {
     public interface IBaseService<T> where T : BaseEntity
     {
+        Task<T> GetById(long id);
         Task<T> Insert(T entity);
         Task<IEnumerable<T>> GetAll();
         Task<T> Delete(long ind);

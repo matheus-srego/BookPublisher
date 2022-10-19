@@ -18,6 +18,12 @@ namespace BookPublisher.Service.Services
             _baseRepository = baseRepository;
         }
 
+        public async Task<T> GetById(long id)
+        {
+            var entity = await _baseRepository.GetById(id);
+            return entity;
+        }
+
         public async Task<IEnumerable<T>> GetAll()
         {
             return await _baseRepository.GetAll();

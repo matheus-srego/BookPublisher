@@ -21,6 +21,12 @@ namespace BookPublisher.Persistence.Repositories
             _query = _context.Set<T>();
         }
 
+        public async Task<T> GetById(long id)
+        {
+            var entity = await _query.FindAsync(id);
+            return entity;
+        }
+
         public async Task<IEnumerable<T>> GetAll()
         {
             var authors = await _query.ToListAsync();

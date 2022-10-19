@@ -10,6 +10,7 @@ namespace BookPublisher.Domain.Interfaces.Repositories
 {
     public interface IBaseRepository<T> where T : BaseEntity
     {
+        Task<T> GetById(long id);
         DbContext getContext();
         Task<T> Insert(T entity);
         Task<IEnumerable<T>> GetAll();
