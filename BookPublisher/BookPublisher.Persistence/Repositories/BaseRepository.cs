@@ -45,6 +45,14 @@ namespace BookPublisher.Persistence.Repositories
             return entity;
         }
 
+        public async Task<T> Update(T entity)
+        {
+            _query.Update(entity);
+            await _context.SaveChangesAsync();
+
+            return entity;
+        }
+
         public async Task<T> Delete(long id)
         {
             var entity = _query.Find(id);

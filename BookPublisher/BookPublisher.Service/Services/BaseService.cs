@@ -35,6 +35,12 @@ namespace BookPublisher.Service.Services
             return entity;
         }
 
+        public async Task<T> Update(T entity)
+        {
+            await _baseRepository.Update(entity);
+            return entity;
+        }
+
         public async Task<T> Delete(long id)
         {
             var entity = await _baseRepository.Delete(id);
