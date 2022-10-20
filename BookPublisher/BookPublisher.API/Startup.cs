@@ -27,8 +27,6 @@ namespace BookPublisher.API
                 options.UseSqlServer(connection);
 
             });
-
-            // serviceCollection.AddScoped<DbContext, BookPublisherContext>();
         }
     }
 }

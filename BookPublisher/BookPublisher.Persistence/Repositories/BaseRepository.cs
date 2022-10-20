@@ -2,18 +2,13 @@
 using BookPublisher.Domain.Models;
 using BookPublisher.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookPublisher.Persistence.Repositories
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     {
         protected readonly DbSet<T> _query;
-        public BookPublisherContext _context;
+        protected readonly BookPublisherContext _context;
 
         public BaseRepository(BookPublisherContext context)
         {
@@ -21,31 +16,30 @@ namespace BookPublisher.Persistence.Repositories
             _query = _context.Set<T>();
         }
 
-        public async Task<T> GetById(long id)
+        public T Get(int id)
         {
-            var entity = await _query.FindAsync(id);
-            return entity;
+            return _query.Find(id);
         }
 
-        public async Task<IEnumerable<T>> GetAll()
+        public async Task<T> GetAsync(int id)
         {
-            var authors = await _query.ToListAsync();
-            return authors;
+            return await _query.FindAsync(id);
         }
 
-        public DbContext getContext()
+        public async Task<IEnumerable<T>> ListAsync()
         {
-            return _context;
+            return await _query.ToListAsync();
         }
 
-        public async Task<T> Insert(T entity)
+        public async Task<T> InsertAsync(T entity)
         {
             await _query.AddAsync(entity);
             await _context.SaveChangesAsync();
+
             return entity;
         }
 
-        public async Task<T> Update(T entity)
+        public async Task<T> UpdateAsync(T entity)
         {
             _query.Update(entity);
             await _context.SaveChangesAsync();
@@ -53,9 +47,9 @@ namespace BookPublisher.Persistence.Repositories
             return entity;
         }
 
-        public async Task<T> Delete(long id)
+        public async Task<T> DeleteAsync(int id)
         {
-            var entity = _query.Find(id);
+            var entity = Get(id);
 
             _query.Remove(entity);
             await _context.SaveChangesAsync();

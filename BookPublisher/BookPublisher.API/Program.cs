@@ -1,9 +1,7 @@
 using BookPublisher.API;
-using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 IConfiguration configuration = builder.Configuration;
 
 var startup = new Startup(configuration);
@@ -16,7 +14,6 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

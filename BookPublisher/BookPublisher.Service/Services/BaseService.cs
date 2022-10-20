@@ -1,11 +1,6 @@
 ﻿using BookPublisher.Domain.Interfaces.Repositories;
 using BookPublisher.Domain.Interfaces.Services;
 using BookPublisher.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookPublisher.Service.Services
 {
@@ -18,33 +13,29 @@ namespace BookPublisher.Service.Services
             _baseRepository = baseRepository;
         }
 
-        public async Task<T> GetById(long id)
+        public async Task<T> GetAsync(int id)
         {
-            var entity = await _baseRepository.GetById(id);
-            return entity;
+            return await _baseRepository.GetAsync(id);
         }
 
-        public async Task<IEnumerable<T>> GetAll()
+        public async Task<IEnumerable<T>> ListAsync()
         {
-            return await _baseRepository.GetAll();
+            return await _baseRepository.ListAsync();
         }
 
-        public async Task<T> Insert(T entity)
+        public async Task<T> InsertAsync(T entity)
         {
-            await _baseRepository.Insert(entity);
-            return entity;
+            return await _baseRepository.InsertAsync(entity);
         }
 
-        public async Task<T> Update(T entity)
+        public async Task<T> UpdateAsync(T entity)
         {
-            await _baseRepository.Update(entity);
-            return entity;
+            return await _baseRepository.UpdateAsync(entity);
         }
 
-        public async Task<T> Delete(long id)
+        public async Task<T> DeleteAsync(int id)
         {
-            var entity = await _baseRepository.Delete(id);
-            return entity;
+            return await _baseRepository.DeleteAsync(id);
         }
     }
 }

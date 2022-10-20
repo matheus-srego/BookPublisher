@@ -1,11 +1,6 @@
 ﻿using BookPublisher.Domain.Models;
 using BookPublisher.Persistence.Mappers;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookPublisher.Persistence.Context
 {
@@ -16,7 +11,7 @@ namespace BookPublisher.Persistence.Context
             // ---
         }
 
-        public DbSet<AuthorModel> Author { get; set; }
+        protected DbSet<AuthorModel> Author { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

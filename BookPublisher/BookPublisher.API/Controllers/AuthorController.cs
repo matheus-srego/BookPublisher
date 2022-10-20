@@ -1,12 +1,11 @@
-﻿using BookPublisher.Domain.DTOs;
-using BookPublisher.Domain.Interfaces.Services;
+﻿using BookPublisher.Domain.Interfaces.Services;
 using BookPublisher.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
 namespace BookPublisher.API.Controllers
 {
-    [Route("api/authors")]
+    [Route("/authors")]
     [ApiController]
     [Produces(MediaTypeNames.Application.Json)]
     public class AuthorController : ControllerBase
@@ -18,57 +17,52 @@ namespace BookPublisher.API.Controllers
             _authorService = authorService;
         }
 
-        // GET: api/<AuthorController>
-        [ProducesResponseType(typeof(IEnumerable<AuthorModel>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [HttpGet]
-        public async Task<IActionResult> List()
-        {
-            return Ok(await _authorService.GetAll());
-        }
-
-        // GET api/<AuthorController>/5
         [ProducesResponseType(typeof(IEnumerable<AuthorModel>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get([FromRoute] long id)
+        public async Task<IActionResult> GetAsync([FromRoute] int id)
         {
-            return Ok(await _authorService.GetById(id));
+            return Ok(await _authorService.GetAsync(id));
         }
 
-        // POST api/<AuthorController>
-        [ProducesResponseType(typeof(NewAuthorDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<AuthorModel>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [HttpGet]
+        public async Task<IActionResult> ListAsync()
+        {
+            return Ok(await _authorService.ListAsync());
+        }
+
+        [ProducesResponseType(typeof(AuthorModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] NewAuthorDTO authorDTO)
+        public async Task<IActionResult> PostAsync([FromBody] AuthorModel authorModel)
         {
-            return Ok(await _authorService.Insert(AuthorModel.Create(authorDTO)));
+            return Ok(await _authorService.InsertAsync(authorModel));
         }
 
-        // PUT api/<AuthorController>/5
         [ProducesResponseType(typeof(AuthorModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPut]
-        public async Task<IActionResult> Put([FromBody] AuthorModel authorModel)
+        public async Task<IActionResult> PutAsync([FromBody] AuthorModel authorModel)
         {
-            return Ok(await _authorService.Update(authorModel));
+            return Ok(await _authorService.UpdateAsync(authorModel));
         }
 
-        // DELETE api/<AuthorController>/5
         [ProducesResponseType(typeof(AuthorModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete([FromRoute] long id)
+        public async Task<IActionResult> DeleteAsync([FromRoute] int id)
         {
-            return Ok(await _authorService.Delete(id));
+            return Ok(await _authorService.DeleteAsync(id));
         }
     }
 }
