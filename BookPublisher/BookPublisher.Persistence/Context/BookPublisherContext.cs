@@ -22,6 +22,7 @@ namespace BookPublisher.Persistence.Context
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<AuthorModel>(new AuthorMapper().Configure);
+            modelBuilder.Entity<BookModel>(new BookMapper().Configure);
         }
     }
 }
