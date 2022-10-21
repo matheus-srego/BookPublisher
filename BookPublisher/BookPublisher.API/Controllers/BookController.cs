@@ -3,8 +3,6 @@ using BookPublisher.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace BookPublisher.API.Controllers
 {
     [Route("/books")]
@@ -19,7 +17,6 @@ namespace BookPublisher.API.Controllers
             _bookService = bookService;
         }
 
-        // GET: api/<BookController>
         [ProducesResponseType(typeof(BookModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -29,7 +26,6 @@ namespace BookPublisher.API.Controllers
             return Ok(await _bookService.ListAsync());
         }
 
-        // GET api/<BookController>/5
         [ProducesResponseType(typeof(BookModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -39,7 +35,6 @@ namespace BookPublisher.API.Controllers
             return Ok(await _bookService.GetAsync(id));
         }
 
-        // POST api/<BookController>
         [ProducesResponseType(typeof(BookModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -49,7 +44,6 @@ namespace BookPublisher.API.Controllers
             return Ok(await _bookService.InsertAsync(bookModel));
         }
 
-        // PUT api/<BookController>/5
         [ProducesResponseType(typeof(BookModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -59,7 +53,6 @@ namespace BookPublisher.API.Controllers
             return Ok(await _bookService.UpdateAsync(bookModel));
         }
 
-        // DELETE api/<BookController>/5
         [ProducesResponseType(typeof(BookModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
