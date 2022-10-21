@@ -34,9 +34,9 @@ namespace BookPublisher.API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> GetAsync([FromRoute] int id)
         {
-            return "value";
+            return Ok(await _bookService.GetAsync(id));
         }
 
         // POST api/<BookController>
