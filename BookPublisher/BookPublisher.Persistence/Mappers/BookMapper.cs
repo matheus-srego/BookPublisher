@@ -17,9 +17,13 @@ namespace BookPublisher.Persistence.Mappers
 
             builder.HasKey(model => model.Id);
 
-            builder.Property(model => model.Title)
+            builder.Property(model => model.id)
                    .HasColumnName("id")
                    .ValueGeneratedOnAdd()
+                   .IsRequired();
+
+            builder.Property(model => model.Title)
+                   .HasColumnName("titulo")
                    .IsRequired();
 
             builder.Property(model => model.ISBN)
@@ -27,7 +31,7 @@ namespace BookPublisher.Persistence.Mappers
                    .IsRequired();
 
             builder.Property(model => model.ReleaseYear)
-                   .HasColumnName("data_nascimento")
+                   .HasColumnName("ano_lancamento")
                    .IsRequired();
         }
     }
