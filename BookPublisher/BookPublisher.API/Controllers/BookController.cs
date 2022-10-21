@@ -20,13 +20,19 @@ namespace BookPublisher.API.Controllers
         }
 
         // GET: api/<BookController>
+        [ProducesResponseType(typeof(BookModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> ListAsyn()
         {
-            return new string[] { "value1", "value2" };
+            return Ok(await _bookService.ListAsync());
         }
 
         // GET api/<BookController>/5
+        [ProducesResponseType(typeof(BookModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet("{id}")]
         public string Get(int id)
         {
