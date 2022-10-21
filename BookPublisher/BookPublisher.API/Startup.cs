@@ -20,6 +20,9 @@ namespace BookPublisher.API
             serviceCollection.AddScoped<IAuthorService, AuthorService>();
             serviceCollection.AddScoped<IAuthorRepository, AuthorRepository>();
 
+            serviceCollection.AddScoped<IBookService, BookService>();
+            serviceCollection.AddScoped<IBookRepository, BookRepository>();
+
             var connection = _configuration["ConnectionString:editora-db"];
 
             serviceCollection.AddDbContext<BookPublisherContext>(options => {
