@@ -60,9 +60,13 @@ namespace BookPublisher.API.Controllers
         }
 
         // DELETE api/<BookController>/5
+        [ProducesResponseType(typeof(BookModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete([FromRoute] int id)
         {
+            return Ok(await _bookService.DeleteAsync(id));
         }
     }
 }
