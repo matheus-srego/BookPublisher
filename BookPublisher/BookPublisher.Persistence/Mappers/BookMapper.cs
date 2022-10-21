@@ -17,7 +17,7 @@ namespace BookPublisher.Persistence.Mappers
 
             builder.HasKey(model => model.Id);
 
-            builder.Property(model => model.id)
+            builder.Property(model => model.Id)
                    .HasColumnName("id")
                    .ValueGeneratedOnAdd()
                    .IsRequired();
