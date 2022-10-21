@@ -24,7 +24,7 @@ namespace BookPublisher.API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet]
-        public async Task<IActionResult> ListAsyn()
+        public async Task<IActionResult> ListAsync()
         {
             return Ok(await _bookService.ListAsync());
         }
@@ -54,7 +54,7 @@ namespace BookPublisher.API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPut]
-        public async Task<IActionResult> Put([FromBody] BookModel bookModel)
+        public async Task<IActionResult> PutAsync([FromBody] BookModel bookModel)
         {
             return Ok(await _bookService.UpdateAsync(bookModel));
         }
