@@ -1,3 +1,14 @@
+﻿using BookPublisher.Web.Models;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.Text;
+
+namespace BookPublisher.Web.Controllers
+{
+    public class AuthorController : Controller
+    {
+        private readonly string URL = "https://localhost:49159/authors";
+
         public async Task<IActionResult> Index()
         {
             List<AuthorModel> list = new List<AuthorModel>();
@@ -13,6 +24,7 @@
 
             return View(list);
         }
+
         public ViewResult Insert() => View();
 
         [HttpPost]
@@ -49,6 +61,7 @@
 
             return View(author);
         }
+
         [HttpPost]
         public async Task<IActionResult> Update(AuthorModel model)
         {
@@ -100,3 +113,4 @@
             return RedirectToAction("Index");
         }
     }
+}
