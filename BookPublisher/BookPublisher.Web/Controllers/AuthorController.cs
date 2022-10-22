@@ -68,3 +68,35 @@
 
             return View(author);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            AuthorModel author = new AuthorModel();
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync(URL + "/" + id))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    author = JsonConvert.DeserializeObject<AuthorModel>(apiResponse);
+                }
+            }
+
+            return View(author);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(AuthorModel model)
+        {
+            using(var httpClient = new HttpClient())
+            {
+                using(var response = await httpClient.DeleteAsync(URL + "/" + model.Id))
+                {
+                    await response.Content.ReadAsStringAsync();
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
+    }
