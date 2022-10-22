@@ -49,3 +49,22 @@
 
             return View(author);
         }
+        [HttpPost]
+        public async Task<IActionResult> Update(AuthorModel model)
+        {
+            AuthorModel author = new AuthorModel();
+
+            using (var httpClient = new HttpClient())
+            {
+                StringContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+
+                using (var response = await httpClient.PutAsync(URL, content))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    ViewBag.Result = "Sucesso!";
+                    author = JsonConvert.DeserializeObject<AuthorModel>(apiResponse);
+                }
+            }
+
+            return View(author);
+        }
