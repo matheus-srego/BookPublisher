@@ -47,6 +47,11 @@ namespace BookPublisher.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Insert(BookViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
             using (var httpClient = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
@@ -81,6 +86,11 @@ namespace BookPublisher.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(BookViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
             using (var httpClient = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");

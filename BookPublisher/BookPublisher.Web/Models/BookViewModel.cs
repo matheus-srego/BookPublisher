@@ -5,7 +5,7 @@ namespace BookPublisher.Web.Models
 {
     public class BookViewModel : AbstractViewModel
     {
-        [Required(ErrorMessage = "O campo 'Título' é obrigaqtório!")]
+        [Required(ErrorMessage = "O campo 'Título' é obrigatório!")]
         [StringLength(100)]
         [Display(Name = "Título:")]
         public string Title { get; set; }
@@ -16,7 +16,6 @@ namespace BookPublisher.Web.Models
         public string ISBN { get; set; }
 
         [Required(ErrorMessage = "O campo 'Ano de Lançamento' é obrigatório!")]
-        [IntegerValidator]
         [Display(Name = "Ano de Lançamento:")]
         public int ReleaseYear { get; set; }
     }
