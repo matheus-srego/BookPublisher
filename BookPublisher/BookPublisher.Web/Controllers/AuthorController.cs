@@ -7,18 +7,18 @@ namespace BookPublisher.Web.Controllers
 {
     public class AuthorController : Controller
     {
-        private readonly string URL = "https://localhost:49159/authors";
+        private readonly string URL = "https://localhost:49153/authors";
 
         public async Task<IActionResult> Index()
         {
-            List<AuthorModel> list = new List<AuthorModel>();
+            List<AuthorViewModel> list = new List<AuthorViewModel>();
 
             using(var httpClient = new HttpClient())
             {
                 using(var response = await httpClient.GetAsync(URL))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    list = JsonConvert.DeserializeObject<List<AuthorModel>>(apiResponse);
+                    list = JsonConvert.DeserializeObject<List<AuthorViewModel>>(apiResponse);
                 }
             }
 
@@ -28,14 +28,14 @@ namespace BookPublisher.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            AuthorModel model = new AuthorModel();
+            AuthorViewModel model = new AuthorViewModel();
 
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync(URL + "/" + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    model = JsonConvert.DeserializeObject<AuthorModel>(apiResponse);
+                    model = JsonConvert.DeserializeObject<AuthorViewModel>(apiResponse);
                 }
             }
 
@@ -45,9 +45,9 @@ namespace BookPublisher.Web.Controllers
         public ViewResult Insert() => View();
 
         [HttpPost]
-        public async Task<IActionResult> Insert(AuthorModel model)
+        public async Task<IActionResult> Insert(AuthorViewModel model)
         {
-            AuthorModel author = new AuthorModel();
+            AuthorViewModel author = new AuthorViewModel();
             using(var httpClient = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
@@ -55,23 +55,24 @@ namespace BookPublisher.Web.Controllers
                 using(var response = await httpClient.PostAsync(URL, content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    author = JsonConvert.DeserializeObject<AuthorModel>(apiResponse);
+                    author = JsonConvert.DeserializeObject<AuthorViewModel>(apiResponse);
                 }
             }
-            return View(author);
+
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
         public async Task<IActionResult> Update(int id)
         {
-            AuthorModel author = new AuthorModel();
+            AuthorViewModel author = new AuthorViewModel();
 
             using(var httpClient = new HttpClient())
             {
                 using(var response = await httpClient.GetAsync(URL + "/" + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    author = JsonConvert.DeserializeObject<AuthorModel>(apiResponse);
+                    author = JsonConvert.DeserializeObject<AuthorViewModel>(apiResponse);
                 }
             }
 
@@ -79,10 +80,8 @@ namespace BookPublisher.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update(AuthorModel model)
+        public async Task<IActionResult> Update(AuthorViewModel model)
         {
-            AuthorModel author = new AuthorModel();
-
             using (var httpClient = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
@@ -91,24 +90,24 @@ namespace BookPublisher.Web.Controllers
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     ViewBag.Result = "Sucesso!";
-                    author = JsonConvert.DeserializeObject<AuthorModel>(apiResponse);
+                    JsonConvert.DeserializeObject<AuthorViewModel>(apiResponse);
                 }
             }
 
-            return View(author);
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            AuthorModel author = new AuthorModel();
+            AuthorViewModel author = new AuthorViewModel();
 
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync(URL + "/" + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    author = JsonConvert.DeserializeObject<AuthorModel>(apiResponse);
+                    author = JsonConvert.DeserializeObject<AuthorViewModel>(apiResponse);
                 }
             }
 
@@ -116,7 +115,7 @@ namespace BookPublisher.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(AuthorModel model)
+        public async Task<IActionResult> Delete(AuthorViewModel model)
         {
             using(var httpClient = new HttpClient())
             {
