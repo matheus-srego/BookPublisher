@@ -25,6 +25,23 @@ namespace BookPublisher.Web.Controllers
             return View(list);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            AuthorModel model = new AuthorModel();
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync(URL + "/" + id))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    model = JsonConvert.DeserializeObject<AuthorModel>(apiResponse);
+                }
+            }
+
+            return View(model);
+        }
+
         public ViewResult Insert() => View();
 
         [HttpPost]
