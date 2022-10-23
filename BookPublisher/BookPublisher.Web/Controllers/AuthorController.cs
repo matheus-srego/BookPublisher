@@ -40,9 +40,8 @@ namespace BookPublisher.Web.Controllers
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     author = JsonConvert.DeserializeObject<AuthorModel>(apiResponse);
                 }
-
-                return View(author);
             }
+            return View(author);
         }
 
         [HttpGet]
