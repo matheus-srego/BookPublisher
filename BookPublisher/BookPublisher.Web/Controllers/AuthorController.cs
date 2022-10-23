@@ -1,5 +1,6 @@
 ﻿using BookPublisher.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 using System.Text;
 
@@ -7,7 +8,7 @@ namespace BookPublisher.Web.Controllers
 {
     public class AuthorController : Controller
     {
-        private readonly string URL = "https://localhost:49153/authors";
+        private readonly string URL = "https://localhost:49155/authors";
 
         public async Task<IActionResult> Index()
         {
@@ -47,6 +48,11 @@ namespace BookPublisher.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Insert(AuthorViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
             AuthorViewModel author = new AuthorViewModel();
             using(var httpClient = new HttpClient())
             {
