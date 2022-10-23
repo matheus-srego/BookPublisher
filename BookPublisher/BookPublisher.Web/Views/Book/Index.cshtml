@@ -1,23 +1,23 @@
 ﻿@model IEnumerable<BookPublisher.Web.Models.BookViewModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Lista de Livros";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Lista de Livros</h1>
 
 <p>
-    <a asp-action="Insert">Create New</a>
+    <a asp-action="Insert">Novo Livro</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayName("Título")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ReleaseYear)
+                @Html.DisplayName("Ano de Lançamento")
             </th>
             <th></th>
         </tr>
@@ -32,9 +32,9 @@
                 @Html.DisplayFor(modelItem => item.ReleaseYear)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Update", new { id=item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                @Html.ActionLink("Editar", "Update", new { id=item.Id }) |
+                @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Excluir", "Delete", new { id=item.Id })
             </td>
         </tr>
 }

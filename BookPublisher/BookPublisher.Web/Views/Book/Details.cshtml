@@ -1,16 +1,21 @@
 ﻿@model BookPublisher.Web.Models.BookViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes do Livro";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<h1>Detalhes do Livro</h1>
 
 <div>
-    <h4>BookViewModel</h4>
     <hr />
     <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Title)
         </dt>
@@ -29,15 +34,9 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ReleaseYear)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
-        </dd>
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Update", new { id = Model.Id }) |
-    <a asp-action="Index">Back to List</a>
+    @Html.ActionLink("Editar", "Update", new { id = Model.Id }) |
+    <a asp-action="Index">Voltar para Lista</a>
 </div>
