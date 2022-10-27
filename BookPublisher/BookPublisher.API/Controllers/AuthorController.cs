@@ -1,4 +1,5 @@
-﻿using BookPublisher.Domain.Interfaces.Services;
+﻿using BookPublisher.Domain.DTOs;
+using BookPublisher.Domain.Interfaces.Services;
 using BookPublisher.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
@@ -35,22 +36,31 @@ namespace BookPublisher.API.Controllers
             return Ok(await _authorService.ListAsync());
         }
 
-        [ProducesResponseType(typeof(AuthorModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(NewAuthorDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPost]
-        public async Task<IActionResult> PostAsync([FromBody] AuthorModel authorModel)
+        public async Task<IActionResult> PostAsync([FromBody] NewAuthorDTO dto)
         {
-            return Ok(await _authorService.InsertAsync(authorModel));
+            return Ok(await _authorService.InsertAsync(AuthorModel.Create(dto)));
         }
 
-        [ProducesResponseType(typeof(AuthorModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(UpdateAuthorDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPut]
-        public async Task<IActionResult> PutAsync([FromBody] AuthorModel authorModel)
+        public async Task<IActionResult> PutAsync([FromBody] UpdateAuthorDTO dto)
         {
-            return Ok(await _authorService.UpdateAsync(authorModel));
+            var author = await _authorService.GetAsync(dto.Id);
+
+            if(author == null)
+            {
+                throw new ArgumentException("Autor não encontrado!");
+            }
+
+            var authorUpdated = author.Update(dto);
+
+            return Ok(await _authorService.UpdateAsync(authorUpdated));
         }
 
         [ProducesResponseType(typeof(AuthorModel), StatusCodes.Status200OK)]
