@@ -33,6 +33,11 @@ namespace BookPublisher.Persistence.Mappers
             builder.Property(model => model.ReleaseYear)
                    .HasColumnName("ano_lancamento")
                    .IsRequired();
+
+            builder.HasMany(model => model.BookAuthor)
+                   .WithOne(model => model.Book)
+                   .HasForeignKey(model => model.BookId)
+                   .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

@@ -9,6 +9,8 @@ namespace BookPublisher.Domain.Models
         public string Email { get; set; }
         public DateTime Birthdate { get; set; }
 
+        public virtual List<BookAuthorModel> BookAuthor { get; set; }
+
         public static AuthorModel Create(NewAuthorDTO dto)
         {
             return new AuthorModel

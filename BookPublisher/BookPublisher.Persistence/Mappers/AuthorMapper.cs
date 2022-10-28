@@ -32,6 +32,11 @@ namespace BookPublisher.Persistence.Mappers
             builder.Property(model => model.Birthdate)
                    .HasColumnName("data_nascimento")
                    .IsRequired();
+
+            builder.HasMany(model => model.BookAuthor)
+                   .WithOne(model => model.Author)
+                   .HasForeignKey(model => model.AuthorId)
+                   .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

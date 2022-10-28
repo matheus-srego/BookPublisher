@@ -10,5 +10,6 @@ namespace BookPublisher.Domain.Interfaces.Repositories
         Task<T> InsertAsync(T entity);
         Task<T> UpdateAsync(T entity);
         Task<T> DeleteAsync(int id);
+        void Commit();
     }
 }

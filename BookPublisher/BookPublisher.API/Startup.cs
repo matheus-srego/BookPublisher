@@ -4,6 +4,7 @@ using BookPublisher.Persistence.Context;
 using BookPublisher.Persistence.Repositories;
 using BookPublisher.Service.Services;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 namespace BookPublisher.API
 {
@@ -23,6 +24,8 @@ namespace BookPublisher.API
             serviceCollection.AddScoped<IBookService, BookService>();
             serviceCollection.AddScoped<IBookRepository, BookRepository>();
 
+            // serviceCollection.AddScoped<IBookAuthorRepository, BookAuthorRepository>();
+
             var connection = _configuration["ConnectionString:editora-db"];
 
             serviceCollection.AddDbContext<BookPublisherContext>(options => {
@@ -30,6 +33,10 @@ namespace BookPublisher.API
                 options.UseSqlServer(connection);
 
             });
+
+            serviceCollection.AddControllers().AddJsonOptions(
+                x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles
+            );
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

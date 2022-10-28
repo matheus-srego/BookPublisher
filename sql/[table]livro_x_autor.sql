@@ -5,9 +5,9 @@ BEGIN TRANSACTION;
 
 CREATE TABLE [dbo].[livro_x_autor]
 (
-	[id] BIGINT NOT NULL PRIMARY KEY IDENTITY(1, 1),
-	[id_autor] BIGINT NOT NULL,
-	[id_livro] BIGINT NOT NULL
+	[id] INT NOT NULL PRIMARY KEY IDENTITY(1, 1),
+	[id_autor] INT NOT NULL,
+	[id_livro] INT NOT NULL
 )
 GO
 

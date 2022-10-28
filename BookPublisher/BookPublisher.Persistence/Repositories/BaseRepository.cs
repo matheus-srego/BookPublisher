@@ -56,5 +56,10 @@ namespace BookPublisher.Persistence.Repositories
 
             return entity;
         }
+
+        public async void Commit()
+        {
+            await _context.SaveChangesAsync();
+        }
     }
 }
