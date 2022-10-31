@@ -2,6 +2,7 @@
 using BookPublisher.Domain.Models;
 using BookPublisher.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace BookPublisher.Persistence.Repositories
 {
@@ -24,6 +25,11 @@ namespace BookPublisher.Persistence.Repositories
         public async Task<T> GetAsync(int id)
         {
             return await _query.FindAsync(id);
+        }
+
+        public T GetOneByCriteria(Expression<Func<T, bool>> expression)
+        {
+            return _query.FirstOrDefault(expression);
         }
 
         public async Task<IEnumerable<T>> ListAsync()

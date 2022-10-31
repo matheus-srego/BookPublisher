@@ -3,7 +3,10 @@ using BookPublisher.Domain.Interfaces.Services;
 using BookPublisher.Persistence.Context;
 using BookPublisher.Persistence.Repositories;
 using BookPublisher.Service.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using System.Text.Json.Serialization;
 
 namespace BookPublisher.API
@@ -24,7 +27,8 @@ namespace BookPublisher.API
             serviceCollection.AddScoped<IBookService, BookService>();
             serviceCollection.AddScoped<IBookRepository, BookRepository>();
 
-            // serviceCollection.AddScoped<IBookAuthorRepository, BookAuthorRepository>();
+            serviceCollection.AddScoped<IUserService, UserService>();
+            serviceCollection.AddScoped<IUserRepository, UserRepository>();
 
             var connection = _configuration["ConnectionString:editora-db"];
 
@@ -37,6 +41,26 @@ namespace BookPublisher.API
             serviceCollection.AddControllers().AddJsonOptions(
                 x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles
             );
+
+            var secretKey = "ZWRpw6fDo28gZW0gY29tcHV0YWRvcmE";
+
+            serviceCollection.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+                .AddJwtBearer(x =>
+                {
+                    x.RequireHttpsMetadata = false;
+                    x.SaveToken = true;
+                    x.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey)),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                });
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
