@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 
 namespace BookPublisher.Web.Models
@@ -18,5 +19,9 @@ namespace BookPublisher.Web.Models
         [Required(ErrorMessage = "O campo 'Ano de Lançamento' é obrigatório!")]
         [Display(Name = "Ano de Lançamento:")]
         public int ReleaseYear { get; set; }
+        
+        [Required(ErrorMessage = "Deve-se selecionar ao menos um autor para o livro.")]
+        [Display(Name = "Autores:")]
+        public List<int> AuthorsId { get; set; }
     }
 }

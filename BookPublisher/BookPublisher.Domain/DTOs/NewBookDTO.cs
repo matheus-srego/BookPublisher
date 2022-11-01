@@ -12,6 +12,6 @@ namespace BookPublisher.Domain.DTOs
         public string Title { get; set; }
         public string ISBN { get; set; }
         public int ReleaseYear { get; set; }
-        public List<int> Authors { get; set; }
+        public List<int> AuthorsId { get; set; }
     }
 }

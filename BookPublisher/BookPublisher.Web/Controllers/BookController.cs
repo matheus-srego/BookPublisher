@@ -1,13 +1,16 @@
 ﻿using BookPublisher.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Text;
 
 namespace BookPublisher.Web.Controllers
 {
     public class BookController : Controller
     {
-        private readonly string URL = "https://localhost:49155/books";
+        private readonly string URL = "https://localhost:49157/books";
+        private readonly string URL_AUTHOR = "https://localhost:49157/authors";
 
         public async Task<IActionResult> Index()
         {
@@ -42,7 +45,50 @@ namespace BookPublisher.Web.Controllers
             return View(model);
         }
 
-        public ViewResult Insert() => View();
+        public async Task<IActionResult> ListAuthors()
+        {
+            List<AuthorViewModel> list = new List<AuthorViewModel>();
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync(URL_AUTHOR))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    list = JsonConvert.DeserializeObject<List<AuthorViewModel>>(apiResponse);
+                }
+            }
+
+            return View(list);
+        }
+
+        public async Task<IActionResult> Insert()
+        {
+            List<AuthorViewModel> listAuthor = new List<AuthorViewModel>();
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync(URL_AUTHOR))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    listAuthor = JsonConvert.DeserializeObject<List<AuthorViewModel>>(apiResponse);
+                }
+            }
+
+            var list = new List<SelectListItem>();
+
+            foreach(var autor in listAuthor)
+            {
+                var selectListItem = new SelectListItem
+                {
+                    Value = ((int)autor.Id).ToString(),
+                    Text = autor.Name + "" + autor.LastName
+                };
+                list.Add(selectListItem);
+            }
+            ViewBag.Authors = list;
+
+            return View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> Insert(BookViewModel model)

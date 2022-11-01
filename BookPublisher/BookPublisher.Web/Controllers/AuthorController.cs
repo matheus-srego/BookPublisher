@@ -8,7 +8,7 @@ namespace BookPublisher.Web.Controllers
 {
     public class AuthorController : Controller
     {
-        private readonly string URL = "https://localhost:49155/authors";
+        private readonly string URL = "https://localhost:49157/authors";
 
         public async Task<IActionResult> Index()
         {

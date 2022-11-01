@@ -20,7 +20,7 @@ namespace BookPublisher.Service.Services
         {
             var book = BookModel.Create(dto);
 
-            foreach (var id in dto.Authors)
+            foreach (var id in dto.AuthorsId)
             {
                 var bookAuthor = new BookAuthorModel()
                 {

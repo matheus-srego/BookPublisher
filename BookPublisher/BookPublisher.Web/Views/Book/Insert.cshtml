@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Cadastro de Livro";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var Authors = ViewBag.Authors;
 }
 
 <h1>Cadastro de Livro</h1>
@@ -26,6 +27,12 @@
                 <label asp-for="ReleaseYear" class="control-label"></label>
                 <input asp-for="ReleaseYear" class="form-control" />
                 <span asp-validation-for="ReleaseYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Selecione um Autor:</label>
+                <select class="form-select" asp-for="AuthorsId" asp-items="Authors">
+                    <option>--- SELECIONE UM AUTOR ---</option>
+                </select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Criar" class="btn btn-primary" />
