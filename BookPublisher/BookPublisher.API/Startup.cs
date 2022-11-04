@@ -27,6 +27,9 @@ namespace BookPublisher.API
             serviceCollection.AddScoped<IBookService, BookService>();
             serviceCollection.AddScoped<IBookRepository, BookRepository>();
 
+            serviceCollection.AddScoped<IBookAuthorService, BookAuthorService>();
+            serviceCollection.AddScoped<IBookAuthorRepository, BookAuthorRepository>();
+
             serviceCollection.AddScoped<IUserService, UserService>();
             serviceCollection.AddScoped<IUserRepository, UserRepository>();
 

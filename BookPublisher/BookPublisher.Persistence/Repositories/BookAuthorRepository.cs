@@ -1,4 +1,5 @@
-﻿using BookPublisher.Domain.Models;
+﻿using BookPublisher.Domain.Interfaces.Repositories;
+using BookPublisher.Domain.Models;
 using BookPublisher.Persistence.Context;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BookPublisher.Persistence.Repositories
 {
-    public class BookAuthorRepository : BaseRepository<BookAuthorModel>
+    public class BookAuthorRepository : BaseRepository<BookAuthorModel>, IBookAuthorRepository
     {
         public BookAuthorRepository(BookPublisherContext context) : base(context)
         {

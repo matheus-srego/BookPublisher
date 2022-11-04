@@ -24,7 +24,7 @@ namespace BookPublisher.API.Controllers
         [HttpGet]
         public async Task<IActionResult> ListAsync()
         {
-            return Ok(await _bookService.ListAsync());
+            return Ok(await _bookService.ListBooksWithAuthorsAsync());
         }
 
         [ProducesResponseType(typeof(BookModel), StatusCodes.Status200OK)]
@@ -33,7 +33,7 @@ namespace BookPublisher.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAsync([FromRoute] int id)
         {
-            return Ok(await _bookService.GetAsync(id));
+            return Ok(await _bookService.GetBookWithAuthorsAsync(id));
         }
 
         [ProducesResponseType(typeof(BookModel), StatusCodes.Status200OK)]

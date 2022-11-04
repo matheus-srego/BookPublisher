@@ -1,4 +1,4 @@
-﻿@model BookPublisher.Web.Models.BookViewModel
+﻿@model BookPublisher.Web.DTOs.BookViewDTO
 
 @{
     ViewData["Title"] = "Detalhes do Livro";
@@ -36,6 +36,50 @@
         </dd>
     </dl>
 </div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("ID")
+            </th>
+            <th>
+                @Html.DisplayName("Nome")
+            </th>
+            <th>
+                @Html.DisplayName("Sobrenome")
+            </th>
+            <th>
+                @Html.DisplayName("E-mail")
+            </th>
+            <th>
+                @Html.DisplayName("Data de Nascimento")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.BookAuthor)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author.Birthdate)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 <div>
     @Html.ActionLink("Editar", "Update", new { id = Model.Id }) |
     <a asp-action="Index">Voltar para Lista</a>

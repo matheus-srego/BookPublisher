@@ -1,4 +1,5 @@
-﻿using BookPublisher.Web.Models;
+﻿using BookPublisher.Web.DTOs;
+using BookPublisher.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
@@ -9,19 +10,22 @@ namespace BookPublisher.Web.Controllers
 {
     public class BookController : Controller
     {
-        private readonly string URL = "https://localhost:49157/books";
-        private readonly string URL_AUTHOR = "https://localhost:49157/authors";
-
+        private readonly string URL = "https://localhost:49153/books";
+        private readonly string URL_AUTHOR = "https://localhost:49153/authors";
+        public IActionResult List()
+        {
+            return View();
+        }
         public async Task<IActionResult> Index()
         {
-            List<BookViewModel> list = new List<BookViewModel>();
+            List<BookViewDTO> list = new List<BookViewDTO>();
             
             using(var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync(URL))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    list = JsonConvert.DeserializeObject<List<BookViewModel>>(apiResponse);
+                    list = JsonConvert.DeserializeObject<List<BookViewDTO>>(apiResponse);
                 }
             }
 
@@ -31,14 +35,18 @@ namespace BookPublisher.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            BookViewModel model = new BookViewModel();
+            BookViewDTO model = new BookViewDTO();
 
             using(var httpClient = new HttpClient())
             {
                 using(var response = await httpClient.GetAsync(URL + "/" + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    model = JsonConvert.DeserializeObject<BookViewModel>(apiResponse);
+                    model = JsonConvert.DeserializeObject<BookViewDTO>(apiResponse);
+                    /*foreach(var bookAuthor in model.BookAuthor)
+                    {
+                        TempData["BookAuthor"] = bookAuthor;
+                    }*/
                 }
             }
 

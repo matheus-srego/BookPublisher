@@ -1,4 +1,5 @@
-﻿using BookPublisher.Web.Models;
+﻿using BookPublisher.Web.DTOs;
+using BookPublisher.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
@@ -8,7 +9,7 @@ namespace BookPublisher.Web.Controllers
 {
     public class AuthorController : Controller
     {
-        private readonly string URL = "https://localhost:49157/authors";
+        private readonly string URL = "https://localhost:49153/authors";
 
         public async Task<IActionResult> Index()
         {
@@ -29,14 +30,14 @@ namespace BookPublisher.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            AuthorViewModel model = new AuthorViewModel();
+            AuthorViewDTO model = new AuthorViewDTO();
 
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync(URL + "/" + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    model = JsonConvert.DeserializeObject<AuthorViewModel>(apiResponse);
+                    model = JsonConvert.DeserializeObject<AuthorViewDTO>(apiResponse);
                 }
             }
 
