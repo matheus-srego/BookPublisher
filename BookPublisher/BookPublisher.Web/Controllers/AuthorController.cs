@@ -13,14 +13,14 @@ namespace BookPublisher.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            List<AuthorViewModel> list = new List<AuthorViewModel>();
+            List<AuthorViewDTO> list = new List<AuthorViewDTO>();
 
             using(var httpClient = new HttpClient())
             {
                 using(var response = await httpClient.GetAsync(URL))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    list = JsonConvert.DeserializeObject<List<AuthorViewModel>>(apiResponse);
+                    list = JsonConvert.DeserializeObject<List<AuthorViewDTO>>(apiResponse);
                 }
             }
 

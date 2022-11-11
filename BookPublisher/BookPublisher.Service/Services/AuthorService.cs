@@ -24,12 +24,15 @@ namespace BookPublisher.Service.Services
             foreach(var author in listAuthors)
             {
                 var authorBook = _bookAuthorRepository.GetOneByCriteria(x => (x.AuthorId == author.Id));
-                var bookModel = await _bookRepository.GetAsync(authorBook.BookId);
-                author.BookAuthor.Add(authorBook);
-
-                foreach(var Book in author.BookAuthor)
+                if(authorBook != null)
                 {
-                    Book.Book = bookModel;
+                    var bookModel = await _bookRepository.GetAsync(authorBook.BookId);
+                    author.BookAuthor.Add(authorBook);
+
+                    foreach(var Book in author.BookAuthor)
+                    {
+                        Book.Book = bookModel;
+                    }
                 }
             }
 
@@ -41,12 +44,11 @@ namespace BookPublisher.Service.Services
             var author = await _authorRepository.GetAsync(id);
 
             var authorBook = _bookAuthorRepository.GetOneByCriteria(x => (x.AuthorId == author.Id));
-            var bookModel = await _bookRepository.GetAsync(authorBook.BookId);
-            author.BookAuthor.Add(authorBook);
-
-            foreach (var Book in author.BookAuthor)
+            if (authorBook != null)
             {
-                Book.Book = bookModel;
+                var bookModel = await _bookRepository.GetAsync(authorBook.BookId);
+                author.BookAuthor.Add(authorBook);
+                author.BookAuthor.Remove(authorBook);
             }
 
             return author;

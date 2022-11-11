@@ -12,6 +12,13 @@ namespace BookPublisher.Web.Controllers
     {
         private readonly string URL = "https://localhost:49153/books";
         private readonly string URL_AUTHOR = "https://localhost:49153/authors";
+        List<int> AuthorsId;
+
+        public BookController()
+        {
+            AuthorsId = new List<int>();
+        }
+
         public IActionResult List()
         {
             return View();
@@ -89,7 +96,7 @@ namespace BookPublisher.Web.Controllers
                 var selectListItem = new SelectListItem
                 {
                     Value = ((int)autor.Id).ToString(),
-                    Text = autor.Name + "" + autor.LastName
+                    Text = autor.Name + " " + autor.LastName
                 };
                 list.Add(selectListItem);
             }
@@ -123,16 +130,40 @@ namespace BookPublisher.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Update(int id)
         {
-            BookViewModel model = new BookViewModel();
+            BookViewDTO model = new BookViewDTO();
 
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync(URL + "/" + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    model = JsonConvert.DeserializeObject<BookViewModel>(apiResponse);
+                    model = JsonConvert.DeserializeObject<BookViewDTO>(apiResponse);
                 }
             }
+
+            List<AuthorViewModel> listAuthor = new List<AuthorViewModel>();
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync(URL_AUTHOR))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    listAuthor = JsonConvert.DeserializeObject<List<AuthorViewModel>>(apiResponse);
+                }
+            }
+
+            var list = new List<SelectListItem>();
+
+            foreach (var autor in listAuthor)
+            {
+                var selectListItem = new SelectListItem
+                {
+                    Value = ((int)autor.Id).ToString(),
+                    Text = autor.Name + " " + autor.LastName
+                };
+                list.Add(selectListItem);
+            }
+            ViewBag.Authors = list;
 
             return View(model);
         }
@@ -140,6 +171,25 @@ namespace BookPublisher.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(BookViewModel model)
         {
+            if (model.AuthorsId.Count == 0)
+            {
+                BookViewDTO dto = new BookViewDTO();
+
+                using (var httpClient = new HttpClient())
+                {
+                    using (var response = await httpClient.GetAsync(URL + "/" + model.Id))
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        dto = JsonConvert.DeserializeObject<BookViewDTO>(apiResponse);
+                    }
+                }
+
+                foreach(var author in dto.BookAuthor)
+                {
+                    model.AuthorsId.Add(author.Author.Id);
+                }
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(model);

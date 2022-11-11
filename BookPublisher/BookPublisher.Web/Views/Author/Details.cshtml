@@ -62,22 +62,25 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.BookAuthor)
+        @if(Model.BookAuthor != null)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Book.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Book.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Book.ISBN)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Book.ReleaseYear)
-                </td>
-            </tr>
+            @foreach (var item in Model.BookAuthor)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Book.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Book.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Book.ISBN)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Book.ReleaseYear)
+                    </td>
+                </tr>
+            }
         }
     </tbody>
 </table>

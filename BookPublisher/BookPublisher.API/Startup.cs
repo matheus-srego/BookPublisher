@@ -40,7 +40,7 @@ namespace BookPublisher.API
                 options.UseSqlServer(connection);
 
             });
-
+            // Descerializar objetos JSON cíclicos
             serviceCollection.AddControllers().AddJsonOptions(
                 x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles
             );

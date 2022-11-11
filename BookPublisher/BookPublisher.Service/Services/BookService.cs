@@ -63,11 +63,7 @@ namespace BookPublisher.Service.Services
             var bookAuthor = _bookAuthorRepository.GetOneByCriteria(x => (x.BookId == book.Id));
             var authorModel = await _authorRepository.GetAsync(bookAuthor.AuthorId);
             book.BookAuthor.Add(bookAuthor);
-
-            foreach (var Author in book.BookAuthor)
-            {
-                Author.Author = authorModel;
-            }
+            book.BookAuthor.Remove(bookAuthor);
 
             return book;
         }

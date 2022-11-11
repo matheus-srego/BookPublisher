@@ -23,5 +23,10 @@ namespace BookPublisher.Web.Models
         [Required(ErrorMessage = "Deve-se selecionar ao menos um autor para o livro.")]
         [Display(Name = "Autores:")]
         public List<int> AuthorsId { get; set; }
+
+        public BookViewModel()
+        {
+            AuthorsId = new List<int>();
+        }
     }
 }
