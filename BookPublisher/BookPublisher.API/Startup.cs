@@ -1,4 +1,6 @@
-﻿using BookPublisher.Domain.Interfaces.Repositories;
+﻿using BookPublisher.Domain.Factories;
+using BookPublisher.Domain.Interfaces.Factories;
+using BookPublisher.Domain.Interfaces.Repositories;
 using BookPublisher.Domain.Interfaces.Services;
 using BookPublisher.Persistence.Context;
 using BookPublisher.Persistence.Repositories;
@@ -32,6 +34,8 @@ namespace BookPublisher.API
 
             serviceCollection.AddScoped<IUserService, UserService>();
             serviceCollection.AddScoped<IUserRepository, UserRepository>();
+
+            serviceCollection.AddScoped<IUserFactory, UserFactory>();
 
             var connection = _configuration["ConnectionString:editora-db"];
 
