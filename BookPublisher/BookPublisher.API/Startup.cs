@@ -66,12 +66,12 @@ namespace BookPublisher.API
                 });
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
+        /*public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
                     webBuilder.UseUrls("https://localhost:49159");
-                });
+                });*/
     }
 }
