@@ -1,6 +1,8 @@
-﻿using BookPublisher.Domain.Interfaces.Repositories;
+﻿using BookPublisher.Domain.Constants;
+using BookPublisher.Domain.Interfaces.Repositories;
 using BookPublisher.Domain.Interfaces.Services;
 using BookPublisher.Domain.Models;
+using FluentValidation;
 using System.Linq.Expressions;
 
 namespace BookPublisher.Service.Services
@@ -29,8 +31,9 @@ namespace BookPublisher.Service.Services
             return await _baseRepository.ListAsync();
         }
 
-        public async Task<T> InsertAsync(T entity)
+        public async Task<T> InsertAsync<TValidator>(T entity) where TValidator : AbstractValidator<T>
         {
+            Validate(entity, Activator.CreateInstance<TValidator>());
             return await _baseRepository.InsertAsync(entity);
         }
 
@@ -42,6 +45,14 @@ namespace BookPublisher.Service.Services
         public async Task<T> DeleteAsync(int id)
         {
             return await _baseRepository.DeleteAsync(id);
+        }
+
+        public void Validate(T entity, AbstractValidator<T> validator)
+        {
+            if(entity == null)
+                throw new Exception(Exceptions.MESSAGE_INCOMPLETE_INFORMATION);
+
+            validator.ValidateAndThrow(entity);
         }
     }
 }

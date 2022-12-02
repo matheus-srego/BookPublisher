@@ -2,6 +2,7 @@
 using BookPublisher.Domain.Interfaces.Factories;
 using BookPublisher.Domain.Interfaces.Services;
 using BookPublisher.Domain.Models;
+using BookPublisher.Service.Validations;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
@@ -27,7 +28,7 @@ namespace BookPublisher.API.Controllers
         [HttpPost]
         public async Task<IActionResult> PostAsync([FromBody] NewUserDTO newUser)
         {
-            return Ok(await _userService.InsertAsync(_userFactory.Create(newUser)));
+            return Ok(await _userService.InsertAsync<UserValidator>(_userFactory.Create(newUser)));
         }
     }
 }

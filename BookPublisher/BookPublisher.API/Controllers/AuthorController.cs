@@ -36,6 +36,7 @@ namespace BookPublisher.API.Controllers
             return Ok(await _authorService.ListAuthorsWithBookAsync());
         }
 
+        /*
         [ProducesResponseType(typeof(NewAuthorDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -44,6 +45,7 @@ namespace BookPublisher.API.Controllers
         {
             return Ok(await _authorService.InsertAsync(AuthorModel.Create(dto)));
         }
+        */
 
         [ProducesResponseType(typeof(UpdateAuthorDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
