@@ -19,13 +19,6 @@ namespace BookPublisher.API.Controllers
             _userService = userService;
         }
 
-        [HttpGet]
-        [Authorize]
-        public IActionResult GetUser()
-        {
-            return Ok("Olá, você está logado!");
-        }
-
         [HttpPost]
         public async Task<IActionResult> CreateAsync([FromBody] UserModel model)
         {
