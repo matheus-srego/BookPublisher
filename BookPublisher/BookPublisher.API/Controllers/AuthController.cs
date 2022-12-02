@@ -20,6 +20,7 @@ namespace BookPublisher.API.Controllers
             _userService = userService;
         }
 
+        /*
         [HttpPost]
         [AllowAnonymous]
         [Route("/auth")]
@@ -47,5 +48,6 @@ namespace BookPublisher.API.Controllers
                 return BadRequest(new { Message = "Ocorreu um erro interno na aplicação, por favor tente novamente." });
             }
         }
+        */
     }
 }

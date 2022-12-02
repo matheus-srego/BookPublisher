@@ -18,6 +18,7 @@ namespace BookPublisher.API.Controllers
             _bookService = bookService;
         }
 
+        /*
         [ProducesResponseType(typeof(BookModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -62,5 +63,6 @@ namespace BookPublisher.API.Controllers
         {
             return Ok(await _bookService.DeleteAsync(id));
         }
+        */
     }
 }

@@ -36,36 +36,5 @@ namespace BookPublisher.Service.Services
 
             return book;
         }
-
-        public async Task<IEnumerable<BookModel>> ListBooksWithAuthorsAsync()
-        {
-            var listBooks = await _bookRepository.ListAsync();
-
-            foreach (var book in listBooks)
-            {
-                var bookAuthor = _bookAuthorRepository.GetOneByCriteria(x => (x.BookId == book.Id));
-                var authorModel = await _authorRepository.GetAsync(bookAuthor.AuthorId);
-                book.BookAuthor.Add(bookAuthor);
-
-                foreach(var Author in book.BookAuthor)
-                {
-                    Author.Author = authorModel;
-                }
-            }
-
-            return listBooks;
-        }
-
-        public async Task<BookModel> GetBookWithAuthorsAsync(int id)
-        {
-            var book = await _bookRepository.GetAsync(id);
-
-            var bookAuthor = _bookAuthorRepository.GetOneByCriteria(x => (x.BookId == book.Id));
-            var authorModel = await _authorRepository.GetAsync(bookAuthor.AuthorId);
-            book.BookAuthor.Add(bookAuthor);
-            book.BookAuthor.Remove(bookAuthor);
-
-            return book;
-        }
     }
 }

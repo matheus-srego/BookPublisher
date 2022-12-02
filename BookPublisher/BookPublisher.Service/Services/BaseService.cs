@@ -3,7 +3,6 @@ using BookPublisher.Domain.Interfaces.Repositories;
 using BookPublisher.Domain.Interfaces.Services;
 using BookPublisher.Domain.Models;
 using FluentValidation;
-using System.Linq.Expressions;
 
 namespace BookPublisher.Service.Services
 {
@@ -16,35 +15,22 @@ namespace BookPublisher.Service.Services
             _baseRepository = baseRepository;
         }
 
-        public async Task<T> GetAsync(int id)
-        {
-            return await _baseRepository.GetAsync(id);
-        }
+        public virtual async Task<T?> GetAsync(int id) => await _baseRepository.GetAsync(id);
 
-        public T GetOneByCriteria(Expression<Func<T, bool>> expression)
-        {
-            return _baseRepository.GetOneByCriteria(expression);
-        }
+        public virtual async Task<IEnumerable<T?>> ListAsync() => await _baseRepository.ListAsync();
 
-        public async Task<IEnumerable<T>> ListAsync()
-        {
-            return await _baseRepository.ListAsync();
-        }
+        public virtual async Task<T?> DeleteAsync(int id) => await _baseRepository.DeleteAsync(await _baseRepository.GetAsync(id));
 
-        public async Task<T> InsertAsync<TValidator>(T entity) where TValidator : AbstractValidator<T>
+        public virtual async Task<T?> InsertAsync<TValidator>(T entity) where TValidator : AbstractValidator<T>
         {
             Validate(entity, Activator.CreateInstance<TValidator>());
             return await _baseRepository.InsertAsync(entity);
         }
 
-        public async Task<T> UpdateAsync(T entity)
+        public virtual async Task<T?> UpdateAsync<TValidator>(T entity) where TValidator : AbstractValidator<T>
         {
+            Validate(entity, Activator.CreateInstance<TValidator>());
             return await _baseRepository.UpdateAsync(entity);
-        }
-
-        public async Task<T> DeleteAsync(int id)
-        {
-            return await _baseRepository.DeleteAsync(id);
         }
 
         public void Validate(T entity, AbstractValidator<T> validator)
