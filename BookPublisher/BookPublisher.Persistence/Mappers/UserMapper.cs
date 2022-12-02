@@ -1,17 +1,12 @@
 ﻿using BookPublisher.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookPublisher.Persistence.Mappers
 {
-    public class UserMapper : IEntityTypeConfiguration<UserModel>
+    public class UserMapper : IEntityTypeConfiguration<User>
     {
-        public void Configure(EntityTypeBuilder<UserModel> builder)
+        public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.ToTable("usuario");
 

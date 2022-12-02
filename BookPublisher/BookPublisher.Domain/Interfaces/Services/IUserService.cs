@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace BookPublisher.Domain.Interfaces.Services
 {
-    public interface IUserService : IBaseService<UserModel>
+    public interface IUserService : IBaseService<User>
     {
-        public UserModel GetByEmail(string email);
+        public User GetByEmail(string email);
     }
 }

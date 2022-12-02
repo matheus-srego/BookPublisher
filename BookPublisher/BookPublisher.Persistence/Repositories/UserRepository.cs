@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BookPublisher.Persistence.Repositories
 {
-    public sealed class UserRepository : BaseRepository<UserModel>, IUserRepository
+    public sealed class UserRepository : BaseRepository<User>, IUserRepository
     {
         protected readonly BookPublisherContext _context;
 
@@ -18,9 +18,9 @@ namespace BookPublisher.Persistence.Repositories
             _context = context;
         }
 
-        public UserModel GetByEmail(string email)
+        public User GetByEmail(string email)
         {
-            return _context.Find<UserModel>(email);
+            return _context.Find<User>(email);
         }
     }
 }

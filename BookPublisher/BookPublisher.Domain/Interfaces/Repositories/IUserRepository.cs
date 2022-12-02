@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace BookPublisher.Domain.Interfaces.Repositories
 {
-    public interface IUserRepository : IBaseRepository<UserModel>
+    public interface IUserRepository : IBaseRepository<User>
     {
-        public UserModel GetByEmail(string email);
+        public User GetByEmail(string email);
     }
 }

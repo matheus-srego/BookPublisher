@@ -6,7 +6,7 @@ namespace BookPublisher.Persistence.Context
 {
     public class BookPublisherContext : DbContext
     {
-        protected DbSet<UserModel> User { get; set; }
+        protected DbSet<User> User { get; set; }
         protected DbSet<AuthorModel> Author { get; set; }
         protected DbSet<BookModel> Book { get; set; }
         protected DbSet<BookAuthorModel> BookAuthor { get; set; }
@@ -25,7 +25,7 @@ namespace BookPublisher.Persistence.Context
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<UserModel>(new UserMapper().Configure);
+            modelBuilder.Entity<User>(new UserMapper().Configure);
             modelBuilder.Entity<AuthorModel>(new AuthorMapper().Configure);
             modelBuilder.Entity<BookModel>(new BookMapper().Configure);
             modelBuilder.Entity<BookAuthorModel>(new BookAuthorMapper().Configure);

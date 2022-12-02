@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BookPublisher.Service.Services
 {
-    public sealed class UserService : BaseService<UserModel>, IUserService
+    public sealed class UserService : BaseService<User>, IUserService
     {
         private readonly IUserRepository _userRepository;
 
@@ -18,7 +18,7 @@ namespace BookPublisher.Service.Services
             _userRepository = userRepository;
         }
 
-        public UserModel GetByEmail(string email)
+        public User GetByEmail(string email)
         {
             return _userRepository.GetByEmail(email);
         }
