@@ -13,5 +13,7 @@ namespace BookPublisher.Domain.Constants
         public const string MESSAGE_EMAIL_NULL = "Por favor, insira um e-mail.";
         public const string MESSAGE_PASSWORD_NULL = "Por favor, insira uma senha.";
         /* --- */
+
+        public const string MESSAGE_INVALID_EMAIL = "O e-mail não atende aos requisitos. Por favor, insira um e-mail válido";
     }
 }
