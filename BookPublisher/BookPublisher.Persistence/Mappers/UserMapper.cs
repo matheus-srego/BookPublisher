@@ -20,6 +20,10 @@ namespace BookPublisher.Persistence.Mappers
             builder.Property(model => model.Name)
                    .HasColumnName("nome")
                    .IsRequired();
+              
+            builder.Property(model => model.Lastname)
+                   .HasColumnName("sobrenome")
+                   .IsRequired();
 
             builder.Property(model => model.Email)
                    .HasColumnName("email")
@@ -27,6 +31,10 @@ namespace BookPublisher.Persistence.Mappers
 
             builder.Property(model => model.Password)
                    .HasColumnName("senha")
+                   .IsRequired();
+
+            builder.Property(model => model.UserType)
+                   .HasColumnName("tipo_usuario")
                    .IsRequired();
         }
     }
