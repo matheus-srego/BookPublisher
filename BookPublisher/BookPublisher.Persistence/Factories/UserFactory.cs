@@ -1,3 +1,4 @@
+using BookPublisher.Domain.Constants;
 using BookPublisher.Domain.DTOs.User;
 using BookPublisher.Domain.Enums;
 using BookPublisher.Domain.Interfaces.Factories;
@@ -11,7 +12,7 @@ namespace BookPublisher.Domain.Factories
         {
             var typeExist = System.Enum.TryParse<UserType>(newUser.UserType, out UserType userType);
             if(!typeExist)
-                throw new ArgumentException($"O tipo '{newUser.UserType}' não existe");
+                throw new ArgumentException(Exceptions.MESSAGE_USER_TYPE_NOT_EXIST);
             
             return new User(newUser.Name, newUser.Lastname, newUser.Email, newUser.Password, userType);
         }

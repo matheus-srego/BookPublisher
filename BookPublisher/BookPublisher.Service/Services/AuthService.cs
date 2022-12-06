@@ -1,13 +1,10 @@
-﻿using BookPublisher.Domain.DTOs;
+﻿using BookPublisher.Domain.Constants;
+using BookPublisher.Domain.DTOs;
 using BookPublisher.Domain.Models;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace BookPublisher.Service.Services
 {
@@ -17,7 +14,7 @@ namespace BookPublisher.Service.Services
         {
             var tokenHandler = new JwtSecurityTokenHandler();
 
-            var key = Encoding.ASCII.GetBytes("ZWRpw6fDo28gZW0gY29tcHV0YWRvcmE");
+            var key = Encoding.ASCII.GetBytes(CONFIGURATION.SECRET_KEY);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {

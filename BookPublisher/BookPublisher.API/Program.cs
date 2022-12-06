@@ -1,6 +1,7 @@
 using BookPublisher.API;
+using BookPublisher.Domain.Constants;
 
-var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+var MyAllowSpecificOrigins = CONFIGURATION.SPECIFIC_ORIGIN;
 
 var builder = WebApplication.CreateBuilder(args);
 

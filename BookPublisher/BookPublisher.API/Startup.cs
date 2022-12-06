@@ -1,4 +1,5 @@
-﻿using BookPublisher.Domain.Factories;
+﻿using BookPublisher.Domain.Constants;
+using BookPublisher.Domain.Factories;
 using BookPublisher.Domain.Interfaces.Factories;
 using BookPublisher.Domain.Interfaces.Repositories;
 using BookPublisher.Domain.Interfaces.Services;
@@ -55,7 +56,7 @@ namespace BookPublisher.API
                                 options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
                              });
             
-            var secretKey = "ZWRpw6fDo28gZW0gY29tcHV0YWRvcmE";
+            var secretKey = CONFIGURATION.SECRET_KEY;
 
             serviceCollection.AddAuthentication(x =>
             {
