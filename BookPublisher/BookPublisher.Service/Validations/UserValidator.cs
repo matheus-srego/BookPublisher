@@ -15,8 +15,9 @@ namespace BookPublisher.Service.Validations
             
             RuleFor(model => model.Email)
                 .NotEmpty().WithMessage(Validators.MESSAGE_EMAIL_EMPTY)
-                .NotNull().WithMessage(Validators.MESSAGE_EMAIL_NULL);
-
+                .NotNull().WithMessage(Validators.MESSAGE_EMAIL_NULL)
+                .EmailAddress().WithMessage(Validators.MESSAGE_INVALID_EMAIL);
+            
             RuleFor(model => model.Password)
                 .NotEmpty().WithMessage(Validators.MESSAGE_PASSWORD_EMPTY)
                 .NotNull().WithMessage(Validators.MESSAGE_PASSWORD_NULL);
