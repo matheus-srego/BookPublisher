@@ -40,7 +40,7 @@ namespace BookPublisher.API.Controllers
             return Ok(await _userService.ListAsync());
         }
 
-        [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(NewUserDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPost]
