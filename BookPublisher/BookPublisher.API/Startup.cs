@@ -49,6 +49,12 @@ namespace BookPublisher.API
                 x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles
             );
 
+            serviceCollection.AddMvc()
+                             .AddJsonOptions( options => {
+                                options.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
+                                options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
+                             });
+            
             var secretKey = "ZWRpw6fDo28gZW0gY29tcHV0YWRvcmE";
 
             serviceCollection.AddAuthentication(x =>
