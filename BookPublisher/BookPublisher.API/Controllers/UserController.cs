@@ -26,7 +26,7 @@ namespace BookPublisher.API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetAsync([FromRoute] int id)
+        public async Task<IActionResult> GetAsync([FromRoute] Guid id)
         {
             return Ok(await _userService.GetAsync(id));
         }
@@ -52,7 +52,7 @@ namespace BookPublisher.API.Controllers
         [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [HttpPut]
+        [HttpPut()]
         public async Task<IActionResult> PutAsync([FromBody] User userUpdate)
         {
             return Ok(await _userService.UpdateAsync<UserValidator>(userUpdate));
@@ -62,7 +62,7 @@ namespace BookPublisher.API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAsync([FromRoute] int id)
+        public async Task<IActionResult> DeleteAsync([FromRoute] Guid id)
         {
             return Ok(await _userService.DeleteAsync(id));
         }

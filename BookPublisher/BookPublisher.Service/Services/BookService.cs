@@ -17,7 +17,7 @@ namespace BookPublisher.Service.Services
             _bookAuthorRepository = bookAuthorRepository;
         }
 
-        public async Task<BookModel> InsertBookWithAuthorAsync(NewBookDTO dto)
+        /*public async Task<BookModel> InsertBookWithAuthorAsync(NewBookDTO dto)
         {
             var book = BookModel.Create(dto);
 
@@ -35,6 +35,6 @@ namespace BookPublisher.Service.Services
             await _bookRepository.InsertAsync(book);
 
             return book;
-        }
+        }*/
     }
 }

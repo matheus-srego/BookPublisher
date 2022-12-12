@@ -5,6 +5,6 @@ namespace BookPublisher.Domain.Interfaces.Services
 {
     public interface IBookService : IBaseService<BookModel>
     {
-        Task<BookModel> InsertBookWithAuthorAsync(NewBookDTO dto);
+        // Task<BookModel> InsertBookWithAuthorAsync(NewBookDTO dto);
     }
 }

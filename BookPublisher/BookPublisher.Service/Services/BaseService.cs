@@ -15,11 +15,11 @@ namespace BookPublisher.Service.Services
             _baseRepository = baseRepository;
         }
 
-        public virtual async Task<T?> GetAsync(int id) => await _baseRepository.GetAsync(id);
+        public virtual async Task<T?> GetAsync(Guid id) => await _baseRepository.GetAsync(id);
 
         public virtual async Task<IEnumerable<T?>> ListAsync() => await _baseRepository.ListAsync();
 
-        public virtual async Task<T?> DeleteAsync(int id) => await _baseRepository.DeleteAsync(await _baseRepository.GetAsync(id));
+        public virtual async Task<T?> DeleteAsync(Guid id) => await _baseRepository.DeleteAsync(await _baseRepository.GetAsync(id));
 
         public virtual async Task<T?> InsertAsync<TValidator>(T entity) where TValidator : AbstractValidator<T>
         {

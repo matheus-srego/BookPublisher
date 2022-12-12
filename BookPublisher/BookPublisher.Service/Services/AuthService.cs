@@ -1,5 +1,5 @@
 ﻿using BookPublisher.Domain.Constants;
-using BookPublisher.Domain.DTOs;
+using BookPublisher.Domain.Interfaces.Services;
 using BookPublisher.Domain.Models;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -8,9 +8,9 @@ using System.Text;
 
 namespace BookPublisher.Service.Services
 {
-    public static class AuthService
+    public interface AuthService : ITokenService
     {
-        public static string GenerateToken(LoginDTO dto)
+        public new string GenerateToken(Login login)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
 
@@ -20,8 +20,7 @@ namespace BookPublisher.Service.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    // new Claim(ClaimTypes.Name, model.Name.ToString()),
-                    new Claim(ClaimTypes.Email, dto.Email.ToString()),
+                    new Claim(ClaimTypes.Email, login.Email.ToString()),
                 }),
                 Expires = DateTime.UtcNow.AddHours(10),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

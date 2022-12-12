@@ -1,12 +1,5 @@
-﻿using BookPublisher.Domain.DTOs;
-using BookPublisher.Domain.Interfaces.Services;
-using BookPublisher.Domain.Models;
-using BookPublisher.Persistence.Repositories;
-using BookPublisher.Service.Services;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using BookPublisher.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel;
 
 namespace BookPublisher.API.Controllers
 {
