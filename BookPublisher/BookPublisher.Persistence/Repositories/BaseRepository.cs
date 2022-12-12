@@ -16,10 +16,10 @@ namespace BookPublisher.Persistence.Repositories
             _query = _context.Set<T>();
         }
 
-        public virtual async Task<T?> GetAsync(Guid? id) => await _query.FindAsync(id);
-
         public virtual async Task<IEnumerable<T?>> ListAsync() => await _query.ToListAsync();
 
+        public virtual async Task<T?> GetAsync(Guid? id) => await _query.FindAsync(id);
+        
         public virtual async Task<T?> InsertAsync(T? entity)
         {
             if(entity != null)

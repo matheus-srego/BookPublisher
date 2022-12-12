@@ -5,8 +5,8 @@ namespace BookPublisher.Domain.Interfaces.Services
 {
     public interface IBaseService<T> where T : BaseEntity
     {
-        Task<T?> GetAsync(Guid id);
         Task<IEnumerable<T?>> ListAsync();
+        Task<T?> GetAsync(Guid id);
         Task<T?> InsertAsync<TValidator>(T entity) where TValidator : AbstractValidator<T>;
         Task<T?> UpdateAsync<TValidator>(T entity) where TValidator : AbstractValidator<T>;
         Task<T?> DeleteAsync(Guid ind);

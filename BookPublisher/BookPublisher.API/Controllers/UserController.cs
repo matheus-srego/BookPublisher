@@ -25,21 +25,21 @@ namespace BookPublisher.API.Controllers
         [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetAsync([FromRoute] Guid id)
-        {
-            return Ok(await _userService.GetAsync(id));
-        }
-
-        [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet]
         public async Task<IActionResult> ListAsync()
         {
             return Ok(await _userService.ListAsync());
         }
 
+        [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetAsync([FromRoute] Guid id)
+        {
+            return Ok(await _userService.GetAsync(id));
+        }
+        
         [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
