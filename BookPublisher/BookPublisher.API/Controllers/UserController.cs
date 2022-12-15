@@ -2,9 +2,10 @@
 using BookPublisher.Domain.Interfaces.Factories;
 using BookPublisher.Domain.Interfaces.Services;
 using BookPublisher.Domain.Models;
-using BookPublisher.Service.Validations;
+using BookPublisher.Service.Validators;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
+using BookPublisher.Domain.Constants;
 
 namespace BookPublisher.API.Controllers
 {
@@ -40,22 +41,24 @@ namespace BookPublisher.API.Controllers
             return Ok(await _userService.GetAsync(id));
         }
 
-        [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(UserResponseDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPost]
-        public async Task<IActionResult> PostAsync([FromBody] NewUserDTO newUser)
+        public async Task<IActionResult> PostAsync([FromBody] UserRequestDTO user)
         {
-            return Ok(await _userService.InsertAsync<UserValidator>(_userFactory.Create(newUser)));
+            var userConverted = _userFactory.Create(user);
+            await _userService.InsertAsync<UserValidator>(userConverted);
+            return Ok(MESSAGES.SUCCESSFUL_REGISTERED_USER);
         }
 
         [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [HttpPut()]
-        public async Task<IActionResult> PutAsync([FromBody] User userUpdate)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutAsync([FromRoute] Guid id, [FromBody] UserRequestDTO user)
         {
-            return Ok(await _userService.UpdateAsync<UserValidator>(userUpdate));
+            return Ok(_userFactory.ConvertModelToDTO(await _userService.UpdateAsync<UserValidator>(_userFactory.Update(id, user))));
         }
 
         [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
@@ -64,7 +67,11 @@ namespace BookPublisher.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsync([FromRoute] Guid id)
         {
-            return Ok(await _userService.DeleteAsync(id));
+            return Ok(new 
+            {
+                User = _userFactory.ConvertModelToDTO(await _userService.DeleteAsync(id)),
+                Message = MESSAGES.SUCCESSFUL_DELETED_USER
+            });
         }
     }
 }

@@ -5,7 +5,8 @@ namespace BookPublisher.Domain.Interfaces.Factories
 {
     public interface IUserFactory
     {
-        User Create(NewUserDTO newUser);
+        User Create(UserRequestDTO newUser);
+        User Update(Guid id, UserRequestDTO updateUser);
         UserResponseDTO ConvertModelToDTO(User? user);
     }
 }

@@ -2,7 +2,7 @@ using BookPublisher.Domain.Constants;
 using BookPublisher.Domain.Models;
 using FluentValidation;
 
-namespace BookPublisher.Service.Validations
+namespace BookPublisher.Service.Validators
 {
     public class UserValidator : AbstractValidator<User>
     {

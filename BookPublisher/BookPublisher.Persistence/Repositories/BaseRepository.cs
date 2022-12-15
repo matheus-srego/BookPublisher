@@ -1,4 +1,5 @@
-﻿using BookPublisher.Domain.Interfaces.Repositories;
+﻿using System.Linq.Expressions;
+using BookPublisher.Domain.Interfaces.Repositories;
 using BookPublisher.Domain.Models;
 using BookPublisher.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,8 @@ namespace BookPublisher.Persistence.Repositories
         public virtual async Task<IEnumerable<T?>> ListAsync() => await _query.ToListAsync();
 
         public virtual async Task<T?> GetAsync(Guid? id) => await _query.FindAsync(id);
+
+        public virtual async Task<T?> GetByCriteriaAsync(Expression<Func<T, bool>> expression) => await _query.FirstOrDefaultAsync(expression);
         
         public virtual async Task<T?> InsertAsync(T? entity)
         {

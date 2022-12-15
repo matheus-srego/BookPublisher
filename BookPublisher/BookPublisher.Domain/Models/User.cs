@@ -18,5 +18,15 @@ namespace BookPublisher.Domain.Models
             Password = password;
             UserType = userType;
         }
+
+        public User(Guid id, string name, string lastname, string email, string password, UserType userType)
+        {
+            Id = id;
+            Name = name;
+            Lastname = lastname;
+            Email = email;
+            Password = password;
+            UserType = userType;
+        }
     }
 }

@@ -3,7 +3,7 @@ using BookPublisher.Domain.Enums;
 
 namespace BookPublisher.Domain.DTOs.User
 {
-    public class NewUserDTO
+    public class UserRequestDTO
     {
         public string Name { get; set; }
         public string Lastname { get; set; }
@@ -11,7 +11,7 @@ namespace BookPublisher.Domain.DTOs.User
         public string Password { get; set; }
         public string UserType { get; set; }
 
-        public NewUserDTO(string name, string lastname, string email, string password, string userType)
+        public UserRequestDTO(string name, string lastname, string email, string password, string userType)
         {
             this.Name = name;
             this.Lastname = lastname;

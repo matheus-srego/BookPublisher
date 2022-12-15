@@ -1,4 +1,5 @@
-﻿using BookPublisher.Domain.Constants;
+﻿using System.Linq.Expressions;
+using BookPublisher.Domain.Constants;
 using BookPublisher.Domain.Interfaces.Repositories;
 using BookPublisher.Domain.Interfaces.Services;
 using BookPublisher.Domain.Models;
@@ -18,6 +19,8 @@ namespace BookPublisher.Service.Services
         public virtual async Task<IEnumerable<T?>> ListAsync() => await _baseRepository.ListAsync();
 
         public virtual async Task<T?> GetAsync(Guid id) => await _baseRepository.GetAsync(id);
+
+        public virtual async Task<T?> GetByCriteriaAsync(Expression<Func<T, bool>> expression) => await _baseRepository.GetByCriteriaAsync(expression);
         
         public virtual async Task<T?> InsertAsync<TValidator>(T entity) where TValidator : AbstractValidator<T>
         {
