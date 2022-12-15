@@ -16,5 +16,10 @@ namespace BookPublisher.Domain.Factories
             
             return new User(newUser.Name, newUser.Lastname, newUser.Email, newUser.Password, userType);
         }
+
+        public UserResponseDTO ConvertModelToDTO(User? user)
+        {
+            return new UserResponseDTO(user.Id, user.Name, user.Lastname, user.Email, user.UserType);
+        }
     }
 }

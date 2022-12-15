@@ -39,7 +39,7 @@ namespace BookPublisher.API.Controllers
         {
             return Ok(await _userService.GetAsync(id));
         }
-        
+
         [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]

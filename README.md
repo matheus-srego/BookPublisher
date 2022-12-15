@@ -8,3 +8,21 @@ Build o docker do projeto API
 docker build -f BookPublisher.API/Dockerfile -t bookpublisher/api .
 
 docker run --name "bookpublisher_api" -p 8080:4001 -t bookpublisher/api
+
+O que deve ter
+ - Usuario
+  - Nome
+  - Sobrenome
+  - email
+  - senha
+  - tipo do usuario
+
+ - Autor
+  - Nome Completo
+  - email
+  - Data de Nascimento
+
+ - Livro
+  - Nome
+  - ISBN
+  - Ano de lancamento

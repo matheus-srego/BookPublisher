@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using BookPublisher.Domain.Enums;
 
 namespace BookPublisher.Domain.DTOs.User
@@ -12,11 +13,11 @@ namespace BookPublisher.Domain.DTOs.User
 
         public NewUserDTO(string name, string lastname, string email, string password, string userType)
         {
-            Name = name;
-            Lastname = lastname;
-            Email = email;
-            Password = password;
-            UserType = userType;
+            this.Name = name;
+            this.Lastname = lastname;
+            this.Email = email;
+            this.Password = password;
+            this.UserType = userType;
         }
     }
 }
