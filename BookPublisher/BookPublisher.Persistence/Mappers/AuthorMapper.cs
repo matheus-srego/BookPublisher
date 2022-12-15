@@ -8,7 +8,7 @@ namespace BookPublisher.Persistence.Mappers
     {
         public void Configure(EntityTypeBuilder<AuthorModel> builder)
         {
-            builder.ToTable("autor");
+            /*builder.ToTable("autor");
 
             builder.HasKey(model => model.Id);
 
@@ -36,7 +36,7 @@ namespace BookPublisher.Persistence.Mappers
             builder.HasMany(model => model.BookAuthor)
                    .WithOne(model => model.Author)
                    .HasForeignKey(model => model.AuthorId)
-                   .OnDelete(DeleteBehavior.Cascade);
+                   .OnDelete(DeleteBehavior.Cascade);*/
         }
     }
 }

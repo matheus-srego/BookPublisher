@@ -10,7 +10,7 @@ namespace BookPublisher.Domain.Models
 {
     public class BookModel : BaseEntity
     {
-        public string Title { get; set; }
+        /*public string Title { get; set; }
         public string ISBN { get; set; }
         public int ReleaseYear { get; set; }
 
@@ -29,6 +29,6 @@ namespace BookPublisher.Domain.Models
                 ISBN = dto.ISBN,
                 ReleaseYear = dto.ReleaseYear
             };
-        }
+        }*/
     }
 }

@@ -15,7 +15,7 @@ namespace BookPublisher.Persistence.Mappers
     {
         public void Configure(EntityTypeBuilder<BookAuthorModel> builder)
         {
-            builder.ToTable("livro_x_autor");
+            /*builder.ToTable("livro_x_autor");
 
             builder.HasKey(model => model.Id);
 
@@ -29,7 +29,7 @@ namespace BookPublisher.Persistence.Mappers
                    .HasColumnName("id_autor");
 
             builder.Property(model => model.BookId)
-                   .HasColumnName("id_livro");
+                   .HasColumnName("id_livro");*/
         }
     }
 }
