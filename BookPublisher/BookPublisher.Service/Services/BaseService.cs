@@ -36,7 +36,7 @@ namespace BookPublisher.Service.Services
         public void Validate(T entity, AbstractValidator<T> validator)
         {
             if(entity == null)
-                throw new Exception(Exceptions.MESSAGE_INCOMPLETE_INFORMATION);
+                throw new Exception(EXCEPTIONS.MESSAGE_INCOMPLETE_INFORMATION);
 
             validator.ValidateAndThrow(entity);
         }

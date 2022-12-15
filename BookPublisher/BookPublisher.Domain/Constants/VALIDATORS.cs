@@ -1,6 +1,6 @@
 namespace BookPublisher.Domain.Constants
 {
-    public static class Validators
+    public static class VALIDATORS
     {
         /* MESSAGES EMPTY BY USER */
         public const string MESSAGE_NAME_EMPTY = "O nome não pode ficar vazio. Por favor, insira um nome.";

@@ -9,21 +9,21 @@ namespace BookPublisher.Service.Validations
         public UserValidator()
         {
             RuleFor(model => model.Name)
-                .NotEmpty().WithMessage(Validators.MESSAGE_NAME_EMPTY)
-                .NotNull().WithMessage(Validators.MESSAGE_NAME_NULL);
+                .NotEmpty().WithMessage(VALIDATORS.MESSAGE_NAME_EMPTY)
+                .NotNull().WithMessage(VALIDATORS.MESSAGE_NAME_NULL);
             
             RuleFor(model => model.Email)
-                .NotEmpty().WithMessage(Validators.MESSAGE_EMAIL_EMPTY)
-                .NotNull().WithMessage(Validators.MESSAGE_EMAIL_NULL)
-                .EmailAddress().WithMessage(Validators.MESSAGE_INVALID_EMAIL);
+                .NotEmpty().WithMessage(VALIDATORS.MESSAGE_EMAIL_EMPTY)
+                .NotNull().WithMessage(VALIDATORS.MESSAGE_EMAIL_NULL)
+                .EmailAddress().WithMessage(VALIDATORS.MESSAGE_INVALID_EMAIL);
             
             RuleFor(model => model.Password)
-                .NotEmpty().WithMessage(Validators.MESSAGE_PASSWORD_EMPTY)
-                .NotNull().WithMessage(Validators.MESSAGE_PASSWORD_NULL);
+                .NotEmpty().WithMessage(VALIDATORS.MESSAGE_PASSWORD_EMPTY)
+                .NotNull().WithMessage(VALIDATORS.MESSAGE_PASSWORD_NULL);
             
             RuleFor(model => model.UserType)
-                .NotEmpty().WithMessage(Validators.MESSAGE_TYPE_EMPTY)
-                .NotNull().WithMessage(Validators.MESSAGE_TYPE_NULL);
+                .NotEmpty().WithMessage(VALIDATORS.MESSAGE_TYPE_EMPTY)
+                .NotNull().WithMessage(VALIDATORS.MESSAGE_TYPE_NULL);
         }
     }
 }

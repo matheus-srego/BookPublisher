@@ -12,7 +12,7 @@ namespace BookPublisher.Domain.Factories
         {
             var typeExist = System.Enum.TryParse<UserType>(newUser.UserType, out UserType userType);
             if(!typeExist)
-                throw new ArgumentException(Exceptions.MESSAGE_USER_TYPE_NOT_EXIST);
+                throw new ArgumentException(EXCEPTIONS.MESSAGE_USER_TYPE_NOT_EXIST);
             
             return new User(newUser.Name, newUser.Lastname, newUser.Email, newUser.Password, userType);
         }
